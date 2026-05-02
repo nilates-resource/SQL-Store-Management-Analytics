@@ -3,7 +3,7 @@ USE Magaza
 
 SET DATEFORMAT dmy; 
 
-CREATE TABLE UrunTurlerı(
+CREATE TABLE UrunTurlerÃ½(
 	ID INT PRIMARY KEY IDENTITY(1,1),
 	TurAdi VARCHAR(100) not null
 )
@@ -21,9 +21,9 @@ CREATE TABLE Urunler(
 	Adi VARCHAR(100) not null,
 	Markasi VARCHAR(100) not null,
 	Rengi VARCHAR(50),
-	Fiyatı FLOAT CHECK (Fiyatı > 0) not null,
+	FiyatÃ½ FLOAT CHECK (FiyatÃ½ > 0) not null,
 	Maliyeti INT DEFAULT 0,
-	UrunTuruID INT FOREIGN KEY REFERENCES UrunTurlerı(ID),
+	UrunTuruID INT FOREIGN KEY REFERENCES UrunTurlerÃ½(ID),
 	TedarikciID INT FOREIGN KEY REFERENCES Tedarikciler(ID)
 	)
 
@@ -47,13 +47,13 @@ CREATE TABLE Musteri(
 	Soyadi VARCHAR(100),
 	TelefonNosu CHAR(11) unique,
 	AldigiUrunID INT FOREIGN KEY REFERENCES Urunler(ID),
-	ToplamSepetTutarı FLOAT DEFAULT 0 CHECK (ToplamSepetTutarı >= 0)
+	ToplamSepetTutarÃ½ FLOAT DEFAULT 0 CHECK (ToplamSepetTutarÃ½ >= 0)
 )
 
 CREATE TABLE Stok(
 	ID INT PRIMARY KEY IDENTITY(1,1),
 	TedarikciID INT FOREIGN KEY REFERENCES Tedarikciler(ID),
-	UrunTuRUID INT FOREIGN KEY REFERENCES UrunTurlerı(ID),
+	UrunTuRUID INT FOREIGN KEY REFERENCES UrunTurlerÃ½(ID),
 	UrunID INT FOREIGN KEY REFERENCES Urunler(ID),
 	Miktar INT DEFAULT 0 CHECK(Miktar >= 0),
 	IslemTuru BIT, 
@@ -89,7 +89,7 @@ CREATE TABLE Giderler(
 )
 
 
-INSERT INTO UrunTurlerı
+INSERT INTO UrunTurlerÃ½
 VALUES
 ('Ruj'),
 ('Dudak Kalemi'),
@@ -99,43 +99,43 @@ VALUES
 
 INSERT INTO Tedarikciler(Adi, Soyadi, TelefonNosu, Sehri)
 VALUES
-('Nil', 'Ateş', 5533333333, 'İstanbul'),
-('Can', 'Ateş', 5533333321, 'İstanbul'),
+('Nil', 'AteÃ¾', 5533333333, 'Ãstanbul'),
+('Can', 'AteÃ¾', 5533333321, 'Ãstanbul'),
 ('Deniz', 'Kara', 5544444444, 'Sakarya'),
-('Kübra', 'Saner', 5543333333, 'Adana'),
-('İrem', 'Özdemir', 5535885858, 'Sivas');
+('KÃ¼bra', 'Saner', 5543333333, 'Adana'),
+('Ãrem', 'Ã–zdemir', 5535885858, 'Sivas');
 
-INSERT INTO Urunler (Adi, Markasi, Rengi, Fiyatı)
+INSERT INTO Urunler (Adi, Markasi, Rengi, FiyatÃ½)
 VALUES
-('Russian Red', 'Romand', 'Kırmızı', 1500),
+('Russian Red', 'Romand', 'KÃ½rmÃ½zÃ½', 1500),
 ('Latte', 'Tarte', 'Kahverengi', 1200),
 ('Black', 'YSL', 'Siyah', 2700),
 ('Onyx', 'Beaulis', 'Siyah', 200),
-('Red', 'Maybelline', 'Kırmızı', 600);
+('Red', 'Maybelline', 'KÃ½rmÃ½zÃ½', 600);
 
 INSERT INTO CalisanGorevi (Gorev)
 VALUES
-('Satış'),
+('SatÃ½Ã¾'),
 ('Kasa'),
 ('Depo'),
-('Düzen'),
-('Satış');
+('DÃ¼zen'),
+('SatÃ½Ã¾');
 
 INSERT INTO Calisanlar (Adi, Soyadi, TelefonNosu, TcKimlik)
 VALUES
-('Ezgi', 'Yıldırım', 05553988854, 51515151522),
-('Nisan', 'Yalnız',  05317551515, 14144444141),
-('Ayşe', 'Erman',   05374848758, 15121333121),
+('Ezgi', 'YÃ½ldÃ½rÃ½m', 05553988854, 51515151522),
+('Nisan', 'YalnÃ½z',  05317551515, 14144444141),
+('AyÃ¾e', 'Erman',   05374848758, 15121333121),
 ('Berrak','Kara',   05383877753, 14111554112),
-('Yiğit', 'Egeli',  05341231145, 45454879444);
+('YiÃ°it', 'Egeli',  05341231145, 45454879444);
 
 
-INSERT INTO Musteri (Adi, Soyadi, TelefonNosu, ToplamSepetTutarı)
+INSERT INTO Musteri (Adi, Soyadi, TelefonNosu, ToplamSepetTutarÃ½)
 VALUES
-('Zeynep', 'Aydın', '05551234567', 850),
+('Zeynep', 'AydÃ½n', '05551234567', 850),
 ('Egemen', 'Topuz', '05559874562', 1200),
-('Merve', 'Yıldız', '05557894561', 450),
-('Ceren', 'Yalçın', '05558741236', 1750),
+('Merve', 'YÃ½ldÃ½z', '05557894561', 450),
+('Ceren', 'YalÃ§Ã½n', '05558741236', 1750),
 ('Efe', 'Arslan', '05559881122', 410)
 
 INSERT INTO Stok (UrunID, UrunTuruID, TedarikciID, Miktar, IslemTuru, ToplamUrunSayisi, GirisZamani, CikisZamani)
@@ -157,20 +157,20 @@ VALUES
 
 INSERT INTO GiderTurleri (Adi, GiderTarihi, FaturaNo, FirmaAdi, MalzemeMiktari)
 VALUES
-('Kira',        '2025-11-05', 101, 'Dükkan Sahibi', 0),
+('Kira',        '2025-11-05', 101, 'DÃ¼kkan Sahibi', 0),
 ('Elektrik',    '2025-12-10', 102, 'Belediye', 0),
-('Su',          '2025-11-12', 103, 'İSKİ', 0),
-('Ambalaj',     '2025-10-15', 104, 'Ambalajcı', 500),
-('Temizlik',    '2025-10-17', 105, 'Temizlik Şirketi', 120);
+('Su',          '2025-11-12', 103, 'ÃSKÃ', 0),
+('Ambalaj',     '2025-10-15', 104, 'AmbalajcÃ½', 500),
+('Temizlik',    '2025-10-17', 105, 'Temizlik Ãirketi', 120);
 
 
 INSERT INTO Giderler (UrunID , GiderTuruID,Tutar, Tarih, Aciklama)
 VALUES
-(1, 1, 25000, '2025-01-05', 'Aylık mağaza kirası'),
-(2, 2, 1800,  '2025-01-10', 'Elektrik faturası'),
-(3, 3, 450,   '2025-01-12', 'Su faturası'),
-(4, 4, 3500,  '2025-01-15', 'Ambalaj malzemesi alımı'),
-(5, 5, 900,   '2025-01-17', 'Mağaza temizlik gideri');
+(1, 1, 25000, '2025-01-05', 'AylÃ½k maÃ°aza kirasÃ½'),
+(2, 2, 1800,  '2025-01-10', 'Elektrik faturasÃ½'),
+(3, 3, 450,   '2025-01-12', 'Su faturasÃ½'),
+(4, 4, 3500,  '2025-01-15', 'Ambalaj malzemesi alÃ½mÃ½'),
+(5, 5, 900,   '2025-01-17', 'MaÃ°aza temizlik gideri');
 
 CREATE VIEW vw_EnCokSatilanUrunu
 AS
@@ -179,7 +179,7 @@ SELECT
     U.Adi,
     U.Markasi,
     U.Rengi,
-    U.Fiyatı,
+    U.FiyatÃ½,
     SUM(S.Miktar) AS ToplamSatis
 FROM Urunler U
 JOIN Satis S ON U.ID = S.UrunID
@@ -188,7 +188,7 @@ GROUP BY
     U.Adi,
     U.Markasi,
     U.Rengi,
-    U.Fiyatı;
+    U.FiyatÃ½;
 
 select * from vw_EnCokSatilanUrunu
 
@@ -212,7 +212,7 @@ AS
 SELECT 
     M.Adi,
     M.Soyadi,
-    SUM(S.Miktar * U.Fiyatı) AS ToplamHarcama
+    SUM(S.Miktar * U.FiyatÃ½) AS ToplamHarcama
 FROM Musteri M
 JOIN Satis S ON M.ID = S.MusteriID
 JOIN Urunler U ON S.UrunID = U.ID
@@ -257,7 +257,7 @@ TRUNCATE TABLE Giderler
 
 SELECT 
     CONVERT(date, S.SatisTarihi) AS SatisGunu,
-    SUM((U.Fiyatı - U.Maliyeti) * S.Miktar) AS GunlukKar
+    SUM((U.FiyatÃ½ - U.Maliyeti) * S.Miktar) AS GunlukKar
 FROM Satis S
 JOIN Urunler U ON S.UrunID = U.ID
 GROUP BY CONVERT(date, S.SatisTarihi)
@@ -270,7 +270,7 @@ FROM (
     SELECT 
         YEAR(S.SatisTarihi) AS Yil,
         MONTH(S.SatisTarihi) AS Ay,
-        SUM((U.Fiyatı - U.Maliyeti) * S.Miktar) AS AylikKar
+        SUM((U.FiyatÃ½ - U.Maliyeti) * S.Miktar) AS AylikKar
     FROM Satis S
     JOIN Urunler U ON S.UrunID = U.ID
     GROUP BY YEAR(S.SatisTarihi), MONTH(S.SatisTarihi)
@@ -281,11 +281,11 @@ SELECT
     U.ID,
     U.Adi AS UrunAdi,
     U.Markasi,
-    U.Fiyatı AS SatisFiyati,
+    U.FiyatÃ½ AS SatisFiyati,
     U.Maliyeti AS Maliyet,
-    (U.Fiyatı - U.Maliyeti) AS KarZarar
+    (U.FiyatÃ½ - U.Maliyeti) AS KarZarar
 FROM Urunler U
-WHERE (U.Fiyatı - U.Maliyeti) < 0;
+WHERE (U.FiyatÃ½ - U.Maliyeti) < 0;
 
 
 SELECT 
@@ -311,7 +311,7 @@ CREATE PROCEDURE sp_UrunGuncelle
 	@YeniAdi VARCHAR(100),
 	@YeniMarkasi VARCHAR(100),
 	@YeniRengi VARCHAR(50),
-	@YeniFiyatı INT,
+	@YeniFiyatÃ½ INT,
 	@YeniMaliyeti INT
 AS
 BEGIN
@@ -319,18 +319,18 @@ BEGIN
 	SET Adi = @YeniAdi,
 		Markasi = @YeniMarkasi,
 		Rengi = @YeniRengi,
-		Fiyatı = @YeniFiyatı,
+		FiyatÃ½ = @YeniFiyatÃ½,
 		Maliyeti = @YeniMaliyeti
 	WHERE ID = @UrunID;
-	PRINT 'Ürün bilgileri başarıyla güncellendi';
+	PRINT 'ÃœrÃ¼n bilgileri baÃ¾arÃ½yla gÃ¼ncellendi';
 END;
 
 EXEC sp_UrunGuncelle
 	@UrunID = 3,
-	@YeniAdi = 'Göz kalemi',
+	@YeniAdi = 'GÃ¶z kalemi',
 	@YeniMarkasi = 'Dior',
 	@YeniRengi = 'Mavi',
-	@YeniFiyatı = 2500,
+	@YeniFiyatÃ½ = 2500,
 	@YeniMaliyeti = 1200;
 
 CREATE PROCEDURE sp_CalisanEkle
@@ -342,7 +342,7 @@ AS
 BEGIN
 	INSERT INTO Calisanlar (Adi, Soyadi, TelefonNosu, TcKimlik)
 	VALUES (@Adi, @Soyadi, @TelefonNosu, @TcKimlik);
-	PRINT 'Yeni çalışan başarıyla eklendi.';
+	PRINT 'Yeni Ã§alÃ½Ã¾an baÃ¾arÃ½yla eklendi.';
 END;
 
 EXEC sp_CalisanEkle
@@ -357,7 +357,7 @@ AS
 BEGIN
 	DELETE FROM Musteri
 	WHERE ID = @MusteriID;
-	PRINT 'Müşteri başarıyla silindi';
+	PRINT 'MÃ¼Ã¾teri baÃ¾arÃ½yla silindi';
 END;
 
 EXEC sp_MusteriSil
@@ -415,16 +415,16 @@ ON Calisanlar (CalisanGoreviID, Adi);
 SELECT C.Adi AS CalisanAdi
 FROM Calisanlar C
 INNER JOIN CalisanGorevi CG ON C.CalisanGoreviID = CG.ID
-WHERE CG.Gorev = 'Satış';
+WHERE CG.Gorev = 'SatÃ½Ã¾';
 
 
-----BOŞ DÖNERSE
+----BOÃ DÃ–NERSE
 UPDATE Calisanlar
-SET CalisanGoreviID = 1   -- Satış
+SET CalisanGoreviID = 1   -- SatÃ½Ã¾
 WHERE ID IN (1, 5, 6, 10, 11, 15);
 ----
 CREATE NONCLUSTERED INDEX IX_TedarikcininSehri
 ON Tedarikciler (Sehri);
 SELECT ID, Adi, Soyadi, TelefonNosu, Sehri
 FROM Tedarikciler
-WHERE Sehri = 'İstanbul'
+WHERE Sehri = 'Ãstanbul'
